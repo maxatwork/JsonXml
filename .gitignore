@@ -1,0 +1,6 @@
+_ReSharper.JsonXml/
+JsonXml.Test/bin/
+JsonXml.Test/obj/
+JsonXml/bin/
+JsonXml/obj/
+JsonXml.5.1.ReSharper.user
