@@ -26,6 +26,12 @@ namespace JsonXml.Test
 			TestJsonXmlReader("{\"foo\":{\"@bar\":\"baz\",\"@qux\":\"quux\"}}", "<foo bar=\"baz\" qux=\"quux\"></foo>");
 		}
 
+        [TestMethod]
+        public void EscapeAttributeReadingTest()
+        {
+            TestJsonXmlReader("{\"foo\":{\"@bar\":\"\\\\\\\\<>&\\\"'/\"}}", "<foo bar=\"\\\\&lt;&gt;&amp;&quot;'/\"></foo>");
+        }
+
 		[TestMethod]
 		public void NestedElementsReadingTest()
 		{
