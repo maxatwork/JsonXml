@@ -43,7 +43,7 @@ namespace JsonXml
 			var type = value.GetType();
 			if (type == typeof(bool)) return ((bool)value) ? "true" : "false";
 			if (type == typeof(double)) return ((double)value).ToString(CultureInfo.InvariantCulture.NumberFormat);
-			return value.ToString();
+			return Escape(value.ToString());
 		}
 
 		public static object ParseValue(string value)
@@ -69,7 +69,7 @@ namespace JsonXml
 				       	: value;
 			}
 
-			return value;
+			return Unescape(value);
 		}
 
 		public static JsonToken GetValueType(string value)
@@ -83,6 +83,26 @@ namespace JsonXml
 			if (decimalRegex.IsMatch(value)) return JsonToken.Float;
 
 			return JsonToken.String;
+		}
+
+		public static string Escape(string s)
+		{
+			return s
+				.Replace("\n", "\\n")
+				.Replace("\r", "\\r")
+				.Replace("\t", "\\t")
+				.Replace("\"", "\\\"")
+				.Replace("\\", "\\\\");
+		}
+
+		public static string Unescape(string s)
+		{
+			return s
+				.Replace("\\n", "\n")
+				.Replace("\\r", "\r")
+				.Replace("\\t", "\t")
+				.Replace("\\\"", "\"")
+				.Replace("\\\\", "\\");
 		}
 	}
 }
