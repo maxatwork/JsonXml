@@ -19,6 +19,12 @@ namespace JsonXml.Test
 			TestXmlJsonReader("<foo bar=\"baz\" qux=\"quux\" />", "{\"foo\":{\"@bar\":\"baz\",\"@qux\":\"quux\"}}");
 		}
 
+        [TestMethod]
+        public void EscapedAttributedEmptyElementTest()
+        {
+            TestXmlJsonReader("<foo bar=\"\\\\&lt;&gt;&amp;&quot;'/\"></foo>", "{\"foo\":{\"@bar\":\"\\\\\\\\<>&\\\"'/\"}}");
+        }
+
 		[TestMethod]
 		public void NonEmptyElementTest()
 		{
